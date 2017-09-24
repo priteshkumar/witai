@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="en-us">
+
+<head>
+
+  <meta charset="UTF-8">
+  <title>Sign-Up Today!</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+      <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
+      <script src="moment-with-locales.min.js"></script>
+<style>
+p{
+  text-align: center;
+}
+#jumbo{
+  background-color:#A0522D;
+}
+</style>
+</head>
+
+<body>
+
+  <div class="container">
+
+    <!-- Jumbotron -->
+    <div class="jumbotron" id="jumbo">
+      <h1 class="text-center">Wit AI !!!!</h1>
+      <p>NLP IS AWESOME</p>
+    </div>
+  </div>
+
+  <div class="container">
+  
+        <div class="panel panel-default panel-primary">
+          <div class="panel-heading">
+            <h3 class="panel-title">WiTaI RESULTS</h3>
+          </div>
+          <div class="panel-body">
+          <table class="table table-striped" id="tbl">
+          <thead>
+          <tr>
+          <th>UserIntent</th>
+          <th>Expressions</th> 
+          </tr>
+          </thead>
+          <tbody id="tbd">
+          </tbody>
+          </table>
+
+</div>
+</div>
+</div>
+
+ <script src="https://code.jquery.com/jquery.js"></script>
+ 
+<script>
+
+var industries = [{"get_agri_ed":"agriculture"}, {"get_arch_ed":"architecture"}, {"get_biological_ed":"biological"},
+                {"get_business_marketing_ed":"business_marketing"}, {"get_communication_ed":"communication"},
+                {"get_communications_technology_ed":"communications_technology"}, {"get_computer_ed":"computer"},
+                {"get_construction_ed":"construction"}, {"get_education_ed":"education"}, {"get_engg_ed":"engineering"},
+                {"get_engineering_technology_ed":"engineering_technology"}, {"get_english_ed":"english"},
+                {"get_ethnic_cultural_gender_ed":"ethnic_cultural_gender"}, 
+                {"get_family_consumer_science_ed":"family_consumer_science"}, {"get_health_ed":"health"},
+                {"get_history_ed":"history"}, {"get_humanities_ed":"humanities"}, {"get_language_ed":"language"}, 
+                {"get_legal_ed":"legal"}, {"get_library_ed":"library"}, {"get_mathematics_ed":"mathematics"},
+                {"get_mechanic_repair_technology_ed":"mechanic_repair_technology"}, {"get_military_ed":"military"}, 
+                {"get_multidiscipline_ed":"multidiscipline"}, {"get_parks_recreation_fitness_ed":"parks_recreation_fitness"},
+                {"get_personal_culinary_ed":"personal_culinary"}, {"get_philosophy_religious_ed":"philosophy_religious"}, 
+                {"get_physicalscience_ed":"physical_science"}, {"get_precision_production_ed":"precision_production"},
+                {"get_psychology_ed":"psychology"}, {"get_public_administration_social_service_ed":"public_administration_social_service"},
+                {"get_resources_ed":"resources"}, {"get_science_technology_ed":"science_technology"},
+                {"get_security_law_enforcement_ed":"security_law_enforcement"}, {"get_social_science_ed":"social_science"},
+                {"get_theology_religious_vocation_ed":"theology_religious_vocation"}];
+
+
+
+function sendEntityquery(){
+
+var MY_WIT_TOKEN = "5HSSLZ5IRHZEJVKTQRF7YOT6NVY442FB";
+$.ajax({
+  url: 'https://api.wit.ai/entities/intent?v=20170307',
+  data: {
+    'access_token' : "5HSSLZ5IRHZEJVKTQRF7YOT6NVY442FB" 
+  },
+  dataType: 'jsonp',
+  method: 'GET',
+  success: function(response) {
+      console.log("success!", response);
+
+      for(var i =0;i < response.values.length;i++){
+        var $trow= $("<tr>");
+        var $tdintent = $("<td>");
+        $tdintent.html("<b>" + response.values[i].value + "</b>");
+        $trow.append($tdintent);
+        var exps = "";
+        for(var j=0;j < response.values[i].expressions.length;j++){
+           exps = exps  + response.values[i].expressions[j] + " ,";
+        }
+        var $tdintentexps = $("<td>");
+        $tdintentexps.html("<i>" + exps + "</i>");
+        $trow.append($tdintentexps);
+        $("#tbd").append($trow);
+     }
+      
+  }
+});
+
+}
+
+function sendStatementquery(question){
+
+var MY_WIT_TOKEN = "5HSSLZ5IRHZEJVKTQRF7YOT6NVY442FB";
+$.ajax({
+  url: 'https://api.wit.ai/message?v=20170307',
+  data: {
+    'q':question,
+    'access_token' : "5HSSLZ5IRHZEJVKTQRF7YOT6NVY442FB" 
+  },
+  dataType: 'jsonp',
+  method: 'GET',
+  success: function(response) {
+      console.log("success!", response);
+      
+  }
+});
+
+}
+
+sendEntityquery();
+/*
+sendStatementquery("colleges having computer program");
+sendStatementquery("nevada");
+sendStatementquery("houston");
+sendStatementquery("oceanography");
+sendStatementquery("english program in texas");
+sendStatementquery("public relations in iowa");
+sendStatementquery("legal");
+sendStatementquery("marketing");
+sendStatementquery("healthcare");
+sendStatementquery("architecture");
+sendStatementquery("agriculture");
+sendStatementquery("physics");
+sendStatementquery("electrical engineering");
+sendStatementquery("engineering");
+sendStatementquery("computer science");
+sendStatementquery("computer science in north carolina");
+
+sendStatementquery("yes");
+sendStatementquery("nope");
+sendStatementquery("not sure");
+*/
+</script>
+</body>
+</html>
