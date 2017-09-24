@@ -1,62 +1,3 @@
-<!DOCTYPE html>
-<html lang="en-us">
-
-<head>
-
-  <meta charset="UTF-8">
-  <title>Sign-Up Today!</title>
-
-  <!-- Bootstrap -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-      <script src="https://www.gstatic.com/firebasejs/3.7.1/firebase.js"></script>
-<style>
-p{
-  text-align: center;
-}
-#jumbo{
-  background-color:#A0522D;
-}
-</style>
-</head>
-
-<body>
-
-  <div class="container">
-
-    <!-- Jumbotron -->
-    <div class="jumbotron" id="jumbo">
-      <h1 class="text-center">Wit AI !!!!</h1>
-      <p>NLP IS AWESOME</p>
-    </div>
-  </div>
-
-  <div class="container">
-  
-        <div class="panel panel-default panel-primary">
-          <div class="panel-heading">
-            <h3 class="panel-title">WiTaI RESULTS</h3>
-          </div>
-          <div class="panel-body">
-          <table class="table table-striped" id="tbl">
-          <thead>
-          <tr>
-          <th>UserIntent</th>
-          <th>Expressions</th> 
-          </tr>
-          </thead>
-          <tbody id="tbd">
-          </tbody>
-          </table>
-
-</div>
-</div>
-</div>
-
- <script src="https://code.jquery.com/jquery.js"></script>
- 
-<script>
-
-
 
 var industries = [{"get_agri_ed":"agriculture"}, {"get_arch_ed":"architecture"}, {"get_biological_ed":"biological"},
                 {"get_business_marketing_ed":"business_marketing"}, {"get_communication_ed":"communication"},
@@ -184,7 +125,3 @@ sendStatementquery("public relations in iowa",callBackfunc);
 sendStatementquery("legal",callBackfunc);
 sendStatementquery("marketing",callBackfunc);
 sendStatementquery("healthcare",callBackfunc);
-
-</script>
-</body>
-</html>
